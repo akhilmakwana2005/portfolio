@@ -29,9 +29,13 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="bg-[#050505] text-[#D7E2EA] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 w-full select-none relative z-10"
+      className="bg-[#050505] text-[#D7E2EA] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 w-full select-none relative z-10 overflow-hidden"
     >
-      <div className="w-full max-w-5xl mx-auto">
+      {/* Premium Neon Glow Backgrounds */}
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] md:w-[40%] h-[60%] bg-[#818CF8] rounded-full blur-[120px] md:blur-[180px] opacity-15 pointer-events-none" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] md:w-[40%] h-[60%] bg-[#22D3EE] rounded-full blur-[120px] md:blur-[180px] opacity-15 pointer-events-none" />
+
+      <div className="w-full max-w-5xl mx-auto relative z-10">
         {/* Section Heading */}
         <FadeIn delay={0} y={40}>
           <h2 className="text-[#D7E2EA] font-black uppercase text-center text-[3rem] sm:text-[6vw] md:text-[8vw] lg:text-[160px] mb-4 leading-none tracking-tight">
