@@ -1,94 +1,110 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React from "react";
+import { motion } from "framer-motion";
+import { FaReact, FaNodeJs, FaGithub, FaAws, FaFigma } from "react-icons/fa";
+import { 
+  SiMongodb, 
+  SiExpress, 
+  SiNextdotjs, 
+  SiTypescript, 
+  SiTailwindcss, 
+  SiGraphql, 
+  SiRedux, 
+  SiPrisma, 
+  SiDocker, 
+  SiFirebase 
+} from "react-icons/si";
 
 const techStackRow1 = [
-  "REACT.JS",
-  "NODE.JS",
-  "EXPRESS",
-  "MONGODB",
-  "NEXT.JS",
-  "TYPESCRIPT",
+  { name: "React.js", icon: FaReact, color: "#61DAFB" },
+  { name: "Node.js", icon: FaNodeJs, color: "#339933" },
+  { name: "Express", icon: SiExpress, color: "#FFFFFF" },
+  { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+  { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "GraphQL", icon: SiGraphql, color: "#E10098" },
 ];
 
 const techStackRow2 = [
-  "TAILWINDCSS",
-  "FRAMER MOTION",
-  "REDUX",
-  "GRAPHQL",
-  "JAVASCRIPT",
-  "GIT & GITHUB",
+  { name: "Redux", icon: SiRedux, color: "#764ABC" },
+  { name: "Prisma", icon: SiPrisma, color: "#2D3748" },
+  { name: "Docker", icon: SiDocker, color: "#2496ED" },
+  { name: "AWS", icon: FaAws, color: "#FF9900" },
+  { name: "Git & GitHub", icon: FaGithub, color: "#FFFFFF" },
+  { name: "Figma", icon: FaFigma, color: "#F24E1E" },
+  { name: "Firebase", icon: SiFirebase, color: "#FFCA28" },
+  { name: "React.js", icon: FaReact, color: "#61DAFB" }, // Filler to balance
 ];
 
+// Duplicate items twice to create a seamless infinite loop
+const row1 = [...techStackRow1, ...techStackRow1];
+const row2 = [...techStackRow2, ...techStackRow2];
+
 export default function MarqueeSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const row1Ref = useRef<HTMLDivElement>(null);
-  const row2Ref = useRef<HTMLDivElement>(null);
-
-  // Triple the arrays to ensure infinite scroll illusion
-  const row1 = [...techStackRow1, ...techStackRow1, ...techStackRow1, ...techStackRow1];
-  const row2 = [...techStackRow2, ...techStackRow2, ...techStackRow2, ...techStackRow2];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current || !row1Ref.current || !row2Ref.current) return;
-
-      const rect = sectionRef.current.getBoundingClientRect();
-      const sectionTop = window.scrollY + rect.top;
-      const offset = (window.scrollY - sectionTop + window.innerHeight) * 0.4;
-
-      // Row 1: moves right on scroll
-      row1Ref.current.style.transform = `translate3d(${offset - 800}px, 0px, 0px)`;
-      // Row 2: moves left on scroll
-      row2Ref.current.style.transform = `translate3d(${-(offset - 200)}px, 0px, 0px)`;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-20 overflow-hidden w-full flex flex-col gap-6 sm:gap-10 select-none"
-    >
-      {/* Row 1 */}
+    <section className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-20 overflow-hidden w-full flex flex-col gap-8 sm:gap-12 select-none relative">
+      
+      {/* Decorative Gradients for smooth fade in/out on edges */}
+      <div className="absolute top-0 bottom-0 left-0 w-32 md:w-64 bg-gradient-to-r from-[#0C0C0C] to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 bottom-0 right-0 w-32 md:w-64 bg-gradient-to-l from-[#0C0C0C] to-transparent z-10 pointer-events-none" />
+
+      {/* Row 1 - Moves Left */}
       <div className="w-full overflow-hidden flex">
-        <div
-          ref={row1Ref}
-          style={{ willChange: "transform" }}
-          className="flex gap-8 sm:gap-16 transition-transform duration-75 ease-out items-center"
+        <motion.div
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            ease: "linear",
+            duration: 40,
+            repeat: Infinity,
+          }}
+          className="flex gap-6 sm:gap-8 flex-nowrap"
+          style={{ width: "max-content" }}
         >
-          {row1.map((tech, i) => (
-            <div key={`row1-${i}`} className="flex items-center gap-8 sm:gap-16 flex-shrink-0">
-              <span className="text-[4rem] sm:text-[6rem] md:text-[8rem] font-black uppercase text-transparent whitespace-nowrap" style={{ WebkitTextStroke: "2px rgba(215, 226, 234, 0.15)" }}>
-                {tech}
-              </span>
-              <span className="text-[#818CF8] text-[2rem] sm:text-[3rem]">✦</span>
-            </div>
-          ))}
-        </div>
+          {row1.map((tech, i) => {
+            const Icon = tech.icon;
+            return (
+              <div 
+                key={`r1-${i}`} 
+                className="flex items-center gap-4 px-8 py-5 rounded-full bg-[#171717] border border-[#222] shadow-[0_0_20px_rgba(129,140,248,0.02)] hover:border-[#818CF8]/40 hover:shadow-[0_0_30px_rgba(129,140,248,0.15)] transition-all duration-300 cursor-default group flex-shrink-0"
+              >
+                <Icon className="text-3xl sm:text-4xl transition-transform duration-300 group-hover:scale-110" style={{ color: tech.color }} />
+                <span className="text-xl sm:text-2xl font-bold text-[#D7E2EA] tracking-wide whitespace-nowrap">
+                  {tech.name}
+                </span>
+              </div>
+            );
+          })}
+        </motion.div>
       </div>
 
-      {/* Row 2 */}
+      {/* Row 2 - Moves Right */}
       <div className="w-full overflow-hidden flex">
-        <div
-          ref={row2Ref}
-          style={{ willChange: "transform" }}
-          className="flex gap-8 sm:gap-16 transition-transform duration-75 ease-out items-center"
+        <motion.div
+          animate={{ x: ["-50%", "0%"] }}
+          transition={{
+            ease: "linear",
+            duration: 45,
+            repeat: Infinity,
+          }}
+          className="flex gap-6 sm:gap-8 flex-nowrap"
+          style={{ width: "max-content" }}
         >
-          {row2.map((tech, i) => (
-            <div key={`row2-${i}`} className="flex items-center gap-8 sm:gap-16 flex-shrink-0">
-              <span className="text-[4rem] sm:text-[6rem] md:text-[8rem] font-black uppercase text-[#D7E2EA] opacity-80 whitespace-nowrap">
-                {tech}
-              </span>
-              <span className="text-[#22D3EE] text-[2rem] sm:text-[3rem]">✦</span>
-            </div>
-          ))}
-        </div>
+          {row2.map((tech, i) => {
+            const Icon = tech.icon;
+            return (
+              <div 
+                key={`r2-${i}`} 
+                className="flex items-center gap-4 px-8 py-5 rounded-full bg-[#171717] border border-[#222] shadow-[0_0_20px_rgba(34,211,238,0.02)] hover:border-[#22D3EE]/40 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] transition-all duration-300 cursor-default group flex-shrink-0"
+              >
+                <Icon className="text-3xl sm:text-4xl transition-transform duration-300 group-hover:scale-110" style={{ color: tech.color }} />
+                <span className="text-xl sm:text-2xl font-bold text-[#D7E2EA] tracking-wide whitespace-nowrap opacity-90 group-hover:opacity-100">
+                  {tech.name}
+                </span>
+              </div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );
