@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0A0A0F;
+  --foreground: #E2E8F0;
+  --accent: #818CF8;
+  --accent2: #22D3EE;
+  --card-bg: #12121A;
+  --border-accent: rgba(129, 140, 248, 0.15);
+}
+
+@theme {
+  --font-sans: var(--font-kanit), sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+html, body, #root {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-kanit), sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+  cursor: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a, button, [role="button"] {
+  cursor: none;
+}
+
+/* Hero heading gradient */
+.hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Accent gradient text */
+.accent-text {
+  background: linear-gradient(135deg, #818CF8 0%, #22D3EE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(18, 18, 26, 0.7);
+  border: 1px solid var(--border-accent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Grain noise overlay */
+.grain::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+  animation: grain 0.5s steps(1) infinite;
+}
+
+@keyframes grain {
+  0%   { transform: translate(0,0); }
+  20%  { transform: translate(-5%, -10%); }
+  40%  { transform: translate(-15%, 5%); }
+  60%  { transform: translate(7%, -25%); }
+  80%  { transform: translate(-5%, 10%); }
+  100% { transform: translate(15%, 20%); }
+}
+
+/* Custom cursor */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #818CF8;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(129,140,248,0.6);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.12s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+}
+
+.cursor-ring.hovered {
+  width: 56px;
+  height: 56px;
+  opacity: 0.5;
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #818CF8, #22D3EE);
+  z-index: 10000;
+  transform-origin: left;
+  transition: transform 0.05s linear;
+}
+
+/* Typing cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: #818CF8;
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink 0.8s ease infinite;
+}
+
+/* Open to work pulse */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.open-to-work-dot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #22C55E;
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+/* Tilt card - handled via JS */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+}
+
+/* Stats counter text */
+.stat-number {
+  background: linear-gradient(135deg, #818CF8 0%, #22D3EE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
