@@ -1,28 +1,22 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 
-const images = [
-  "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
-  "https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif",
-  "https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif",
-  "https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif",
-  "https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif",
-  "https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif",
-  "https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif",
-  "https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif",
-  "https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif",
-  "https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif",
-  "https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif",
-  "https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif",
-  "https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif",
-  "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
-  "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif",
-  "https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif",
-  "https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif",
-  "https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif",
-  "https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif",
-  "https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif",
-  "https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif",
+const techStackRow1 = [
+  "REACT.JS",
+  "NODE.JS",
+  "EXPRESS",
+  "MONGODB",
+  "NEXT.JS",
+  "TYPESCRIPT",
+];
+
+const techStackRow2 = [
+  "TAILWINDCSS",
+  "FRAMER MOTION",
+  "REDUX",
+  "GRAPHQL",
+  "JAVASCRIPT",
+  "GIT & GITHUB",
 ];
 
 export default function MarqueeSection() {
@@ -30,8 +24,9 @@ export default function MarqueeSection() {
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
 
-  const row1Images = [...images.slice(0, 11), ...images.slice(0, 11), ...images.slice(0, 11)];
-  const row2Images = [...images.slice(11), ...images.slice(11), ...images.slice(11)];
+  // Triple the arrays to ensure infinite scroll illusion
+  const row1 = [...techStackRow1, ...techStackRow1, ...techStackRow1, ...techStackRow1];
+  const row2 = [...techStackRow2, ...techStackRow2, ...techStackRow2, ...techStackRow2];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,10 +34,10 @@ export default function MarqueeSection() {
 
       const rect = sectionRef.current.getBoundingClientRect();
       const sectionTop = window.scrollY + rect.top;
-      const offset = (window.scrollY - sectionTop + window.innerHeight) * 0.3;
+      const offset = (window.scrollY - sectionTop + window.innerHeight) * 0.4;
 
       // Row 1: moves right on scroll
-      row1Ref.current.style.transform = `translate3d(${offset - 200}px, 0px, 0px)`;
+      row1Ref.current.style.transform = `translate3d(${offset - 800}px, 0px, 0px)`;
       // Row 2: moves left on scroll
       row2Ref.current.style.transform = `translate3d(${-(offset - 200)}px, 0px, 0px)`;
     };
@@ -58,27 +53,21 @@ export default function MarqueeSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden w-full flex flex-col gap-3 select-none"
+      className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-20 overflow-hidden w-full flex flex-col gap-6 sm:gap-10 select-none"
     >
       {/* Row 1 */}
       <div className="w-full overflow-hidden flex">
         <div
           ref={row1Ref}
           style={{ willChange: "transform" }}
-          className="flex gap-3 transition-transform duration-75 ease-out"
+          className="flex gap-8 sm:gap-16 transition-transform duration-75 ease-out items-center"
         >
-          {row1Images.map((src, i) => (
-            <div
-              key={`row1-${i}`}
-              className="w-[420px] h-[270px] flex-shrink-0 rounded-2xl overflow-hidden bg-[#171717]"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={src}
-                alt={`Portfolio Work ${i}`}
-                loading="lazy"
-                className="w-full h-full object-cover pointer-events-none"
-              />
+          {row1.map((tech, i) => (
+            <div key={`row1-${i}`} className="flex items-center gap-8 sm:gap-16 flex-shrink-0">
+              <span className="text-[4rem] sm:text-[6rem] md:text-[8rem] font-black uppercase text-transparent whitespace-nowrap" style={{ WebkitTextStroke: "2px rgba(215, 226, 234, 0.15)" }}>
+                {tech}
+              </span>
+              <span className="text-[#818CF8] text-[2rem] sm:text-[3rem]">✦</span>
             </div>
           ))}
         </div>
@@ -89,20 +78,14 @@ export default function MarqueeSection() {
         <div
           ref={row2Ref}
           style={{ willChange: "transform" }}
-          className="flex gap-3 transition-transform duration-75 ease-out"
+          className="flex gap-8 sm:gap-16 transition-transform duration-75 ease-out items-center"
         >
-          {row2Images.map((src, i) => (
-            <div
-              key={`row2-${i}`}
-              className="w-[420px] h-[270px] flex-shrink-0 rounded-2xl overflow-hidden bg-[#171717]"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={src}
-                alt={`Portfolio Work ${i + 11}`}
-                loading="lazy"
-                className="w-full h-full object-cover pointer-events-none"
-              />
+          {row2.map((tech, i) => (
+            <div key={`row2-${i}`} className="flex items-center gap-8 sm:gap-16 flex-shrink-0">
+              <span className="text-[4rem] sm:text-[6rem] md:text-[8rem] font-black uppercase text-[#D7E2EA] opacity-80 whitespace-nowrap">
+                {tech}
+              </span>
+              <span className="text-[#22D3EE] text-[2rem] sm:text-[3rem]">✦</span>
             </div>
           ))}
         </div>
