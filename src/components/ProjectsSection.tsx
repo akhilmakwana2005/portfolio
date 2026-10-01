@@ -30,7 +30,7 @@ const projects = [
     img1: "/projects/portfolio_1.png",
     img2: "/projects/portfolio_2.webp",
     img3: "/projects/portfolio_hero.png",
-    link: "https://github.com/akhilmakwana",
+    link: "https://akhilmakwana302.vercel.app/",
   },
 ];
 
