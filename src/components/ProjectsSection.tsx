@@ -18,9 +18,9 @@ const projects = [
     num: "02",
     category: "Full Stack App",
     name: "MoneyTrackFlow",
-    img1: "/projects/money_track_1.jpg",
-    img2: "/projects/money_track_2.jpg",
-    img3: "/projects/money_track_hero.jpg",
+    img1: "/projects/money_track_1.png",
+    img2: "/projects/money_track_2.png",
+    img3: "/projects/money_track_hero.png",
     link: "https://moneytrackflow.vercel.app/",
   },
   {
