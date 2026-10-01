@@ -27,9 +27,9 @@ const projects = [
     num: "03",
     category: "Frontend Dev",
     name: "Personal Portfolio",
-    img1: "/projects/portfolio_1.jpg",
-    img2: "/projects/portfolio_2.jpg",
-    img3: "/projects/portfolio_hero.jpg",
+    img1: "/projects/portfolio_1.png",
+    img2: "/projects/portfolio_2.webp",
+    img3: "/projects/portfolio_hero.png",
     link: "https://github.com/akhilmakwana",
   },
 ];
