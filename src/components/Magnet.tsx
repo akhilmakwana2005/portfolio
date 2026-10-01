@@ -23,9 +23,11 @@ export default function Magnet({
   const [transition, setTransition] = useState("");
 
   useEffect(() => {
+    const node = ref.current;
+    
     const handleMouseMove = (e: MouseEvent) => {
-      if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
+      if (!node) return;
+      const rect = node.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       const dist = Math.hypot(e.clientX - centerX, e.clientY - centerY);
@@ -47,11 +49,11 @@ export default function Magnet({
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    ref.current?.addEventListener("mouseleave", handleMouseLeave);
+    node?.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      ref.current?.removeEventListener("mouseleave", handleMouseLeave);
+      node?.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [padding, strength, activeTransition, inactiveTransition]);
 

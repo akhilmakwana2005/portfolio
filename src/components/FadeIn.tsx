@@ -21,6 +21,7 @@ export default function FadeIn({
   as = "div",
   className = "",
 }: FadeInProps) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const MotionComponent = (motion as any)[as] || motion.div;
 
   return (

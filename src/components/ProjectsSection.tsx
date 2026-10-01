@@ -95,6 +95,7 @@ interface ProjectCardComponentProps {
   img2: string;
   img3: string;
   link: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   progress: any;
   range: number[];
   targetScale: number;

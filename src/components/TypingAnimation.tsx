@@ -26,8 +26,10 @@ export default function TypingAnimation() {
         setCharIndex((c) => c - 1);
       }, 45);
     } else if (deleting && charIndex === 0) {
-      setDeleting(false);
-      setWordIndex((w) => (w + 1) % WORDS.length);
+      timeoutRef.current = setTimeout(() => {
+        setDeleting(false);
+        setWordIndex((w) => (w + 1) % WORDS.length);
+      }, 0);
     }
 
     return () => {
