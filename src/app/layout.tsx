@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Akhil Makwana | Full Stack MERN Developer",
     description: "Portfolio of Akhil Makwana, a passionate Full Stack MERN Developer building scalable web applications.",
-    url: "https://your-domain.com", // update when deployed
+    url: "https://akhilmakwana302.vercel.app", 
     siteName: "Akhil Makwana Portfolio",
     type: "website",
   },
@@ -53,7 +53,7 @@ const jsonLd = {
   "@type": "Person",
   name: "Akhil Makwana",
   jobTitle: "MERN Stack Developer",
-  url: "https://your-domain.com", // update when deployed
+  url: "https://akhilmakwana302.vercel.app", 
   sameAs: [
     "https://github.com/akhilmakwana2005",
     "https://www.linkedin.com/in/akhil-makwana-700772305/"
